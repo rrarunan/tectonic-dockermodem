@@ -1,6 +1,6 @@
 {
   "name": "tectonic-dockermodem",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "A tectonic driver for remote AJAX calls using Docker Modem with callbacks",
   "main": "transpiled/index.js",
   "scripts": {
