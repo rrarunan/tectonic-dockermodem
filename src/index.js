@@ -1,6 +1,6 @@
 'use strict';
 
-const DockerModem = require('docker-modem').default;
+const DockerModem = require('docker-modem');
 
 // Following ENV vars are supported (docker-modem dep)
 // DOCKER_HOST - e.g. tcp://localhost:2376 (optional)
