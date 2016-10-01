@@ -25,6 +25,7 @@ export default class TectonicDockerModem {
 
     const dm = new DockerModem(opts);
 
+    // Query has `params` for query parameters and `body` for POST/UPDATE bodies
     const mergeOptions = ({ params, body }) => {
       const options = {};
       for (let attrParam in params) { options[attrParam] = params[attrParam]; }
@@ -38,8 +39,6 @@ export default class TectonicDockerModem {
       let {
         meta: { url, transform, method, headers, request }
       } = sourceDef;
-
-      // Query has `params` for query parameters and `body` for POST/UPDATE bodies
 
       // Normalize method type
       method = method ? method.toUpperCase() : 'GET';
@@ -56,12 +55,10 @@ export default class TectonicDockerModem {
       const cb = (err, res) => {
         // If this errored call fail
         if (err !== null) {
-
           // Pass the error into the global onError handler if it exists
           if (opts.onError) {
             opts.onError(err, res);
           }
-
           return fail(err, res);
         }
 
@@ -70,19 +67,6 @@ export default class TectonicDockerModem {
         }
 
         return success(res.body, res);
-      }
-
-      if (opts.request) {
-        r = opts.request(r);
-      }
-
-      // When constructing the driver if we were passed a request transformer
-      // use it
-
-      // Similarly, if there's a meta.request parameter we should use it to
-      // transform the request for this particular source only
-      if (typeof request === 'function') {
-        r = request(r);
       }
 
       //Options is the object that has query parameters and
